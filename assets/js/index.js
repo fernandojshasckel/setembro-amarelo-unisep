@@ -1,26 +1,9 @@
+debugger
 const cam = document.getElementById('cam')
 
-const startVideo = () => {
-    navigator.mediaDevices.enumerateDevices()
-    .then(devices => {
-        if (Array.isArray(devices)) {
-            devices.forEach(device => {
-                if (device.kind === 'videoinput') {
-                        navigator.getUserMedia(
-                            { video: {
-                                deviceId: device.deviceId
-                            }},
-                            stream => cam.srcObject = stream,
-                            error => console.error(error)
-                        )
-                }
-            })
-        }
-    })
-}
-
 const loadLabels = () => {
-    const labels = ['']
+    debugger
+    const labels = ['Fernando Hasckel']
     return Promise.all(labels.map(async label => {
         const descriptions = []
         for (let i = 1; i <= 5; i++) {
@@ -42,7 +25,26 @@ Promise.all([
     faceapi.nets.faceExpressionNet.loadFromUri('/assets/lib/face-api/models'),
     faceapi.nets.ageGenderNet.loadFromUri('/assets/lib/face-api/models'),
     faceapi.nets.ssdMobilenetv1.loadFromUri('/assets/lib/face-api/models'),
-]).then(startVideo)
+]).then(
+    navigator.mediaDevices.enumerateDevices()
+    .then(devices => {
+        debugger
+        if (Array.isArray(devices)) {
+            debugger
+            devices.forEach(device => {
+                if (device.kind === 'videoinput') {
+                        navigator.getUserMedia(
+                            { video: {
+                                deviceId: device.deviceId
+                            }},
+                            stream => cam.srcObject = stream,
+                            error => console.error(error)
+                        )
+                }
+            })
+        }
+    })
+)
 
 cam.addEventListener('play', async () => {
     const canvas = faceapi.createCanvasFromMedia(cam)

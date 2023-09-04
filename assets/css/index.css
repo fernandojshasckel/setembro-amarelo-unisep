@@ -1,12 +1,21 @@
 body {
-    margin: 0;
+    background-color: rgb(211, 211, 36);
+}
+
+video {
+    margin-left: 400px; 
     padding: 0;
-    width: 100vw;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 500px;
 }
+
+h3 {
+    margin: 0 auto;
+    display: block; /* Por padrão, os elementos h3 já são elementos de bloco, mas isso garante que eles permaneçam assim */
+    width: fit-content; /* Isso faz com que a largura do elemento seja apenas o necessário para o conteúdo, tornando-o centralizado horizontalmente */
+  }
 
 canvas {
     position: absolute;
