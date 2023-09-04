@@ -6,7 +6,6 @@ const startVideo = () => {
         if (Array.isArray(devices)) {
             devices.forEach(device => {
                 if (device.kind === 'videoinput') {
-                    if (device.label.includes('C920')) {
                         navigator.getUserMedia(
                             { video: {
                                 deviceId: device.deviceId
@@ -14,7 +13,6 @@ const startVideo = () => {
                             stream => cam.srcObject = stream,
                             error => console.error(error)
                         )
-                    }
                 }
             })
         }
